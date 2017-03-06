@@ -326,7 +326,7 @@ $(document).ready(function () {
         update();
         $("#myModal").fadeOut("slow");
         $("canvas").addClass('canvas')
-        $("#score-border").addClass('score-border')
+        $("#score-bordertatu").addClass('score-border')
     });
 
     $('#whole-screen').keypress(function (event) {
