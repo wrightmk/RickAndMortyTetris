@@ -326,18 +326,20 @@ $(document).ready(function () {
         update();
         $("#myModal").fadeOut("slow");
         $("canvas").addClass('canvas')
-        $("#score-bordertatu").addClass('score-border')
+        $("#score-border").addClass('score-border')
     });
 
-    $('#whole-screen').keypress(function (event) {
-      let key = event.which;
-      if(key === 13) {
-        playerReset();
-        updateScore();
-        update();
-        $("#myModal").fadeOut("slow");
-        $("canvas").addClass('canvas')
-      }
-    });
+    // not working:
+
+    // $('#whole-screen').keypress(function (event) {
+    //   let key = event.which;
+    //   if(key === 13) {
+    //     playerReset();
+    //     updateScore();
+    //     update();
+    //     $("#myModal").fadeOut("slow");
+    //     $("canvas").addClass('canvas')
+    //   }
+    // });
 
 });
