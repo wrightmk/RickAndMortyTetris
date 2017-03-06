@@ -17,6 +17,7 @@ function arenaSweep() {
     arena.unshift(row);
     y++;
 
+    playSounds();
     player.score += rowCount * 10;
     rowCount *= 2;
   }
@@ -128,6 +129,7 @@ function merge(arena, player) {
   })
 }
 
+
 function playerDrop() {
   player.pos.y++;
   if (collide(arena, player)) {
@@ -148,6 +150,10 @@ function playerMove(dir) {
 }
 
 function playerReset() {
+  // audio.volume = 0.08;
+  audio.volume = 0.04;
+  audio.play()
+
   const pieces = 'ILJOTSZ'
   player.matrix = createPiece(pieces[pieces.length * Math.random() | 0]);
   // floor: | 0
@@ -201,6 +207,37 @@ function rotate(matrix, dir) {
     matrix.reverse();
   }
 }
+//
+var sounds = ["I_like_what_you_got.wav",
+              "http://peal.io/download/6utip",
+              "http://peal.io/download/aof4e",
+              "http://peal.io/download/2a98y",
+              "http://peal.io/download/yp4lw",
+              "http://peal.io/download/9m65z",
+              "http://peal.io/download/w9l11",
+              "http://peal.io/download/s5no7",
+              "http://peal.io/download/406yh",
+              "http://peal.io/download/vedk7",
+              "http://peal.io/download/h0hox",
+              "http://peal.io/download/hrjlu"  ],
+
+oldSounds = [];
+
+function playSounds() {
+  var index = Math.floor(Math.random() * (sounds.length)),
+  thisSound = sounds[index];
+
+  oldSounds.push(thisSound);
+  sounds.splice(index, 1);
+
+  if (sounds.length < 1) {
+    sounds = oldSounds.splice(0, oldSounds.length);
+  }
+
+  $("#element").html("<audio autoplay><source src=\"" + thisSound + "\" type=\"audio/mpeg\"><embed src=\"" + thisSound + "\" hidden=\"true\" autostart=\"true\" /></audio>");
+}
+
+let audio = new Audio('tetris_theme.mp3');
 
 let dropCounter = 0;
 let dropInterval = 1000;
@@ -218,6 +255,16 @@ function update(time = 0) {
   draw()
   requestAnimationFrame(update);
 }
+
+// function pause() {
+//   while (true) {
+//     dropCounter = 0;
+//     // if (pause()) {
+//     //   break;
+//     // }
+//   }
+// }
+
 
 function updateScore() {
   document.getElementById('score').innerText = player.score;
@@ -256,10 +303,41 @@ document.addEventListener('keydown', event => {
     playerRotate(-1);
   } else if (event.keyCode === 87) {
     playerRotate(1);
+  } else if (event.keyCode === 80) {
+    pause();
   }
 
 });
 
-playerReset();
-updateScore();
-update();
+// modal
+
+$(document).ready(function () {
+
+    $("#myBtn").click(function () {
+        $("#myModal").fadeIn("slow");
+    });
+    $(".close").click(function () {
+
+        $("#myModal").fadeOut("slow");
+    });
+    $("#start").click(function () {
+        playerReset();
+        updateScore();
+        update();
+        $("#myModal").fadeOut("slow");
+        $("canvas").addClass('canvas')
+        $("#score-border").addClass('score-border')
+    });
+
+    $('#whole-screen').keypress(function (event) {
+      let key = event.which;
+      if(key === 13) {
+        playerReset();
+        updateScore();
+        update();
+        $("#myModal").fadeOut("slow");
+        $("canvas").addClass('canvas')
+      }
+    });
+
+});
