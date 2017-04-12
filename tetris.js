@@ -1,6 +1,4 @@
-//access the canvas
 const canvas = document.getElementById('tetris');
-//get context to draw on dom Element
 const context = canvas.getContext('2d');
 
 context.scale(20, 20);
@@ -99,7 +97,7 @@ function createPiece(type) {
 }
 
 function draw() {
-  context.fillStyle = '#000';
+  context.fillStyle = '#000'; // #000
   context.fillRect(0, 0, canvas.width, canvas.height);
 
   drawMatrix(arena, {x: 0, y: 0});
@@ -150,7 +148,6 @@ function playerMove(dir) {
 }
 
 function playerReset() {
-  // audio.volume = 0.08;
   audio.volume = 0.04;
   audio.play()
 
@@ -208,7 +205,7 @@ function rotate(matrix, dir) {
   }
 }
 //
-var sounds = ["I_like_what_you_got.wav",
+var sounds = ["http://peal.io/download/3zt9h",
               "http://peal.io/download/6utip",
               "http://peal.io/download/aof4e",
               "http://peal.io/download/2a98y",
@@ -237,7 +234,7 @@ function playSounds() {
   $("#element").html("<audio autoplay><source src=\"" + thisSound + "\" type=\"audio/mpeg\"><embed src=\"" + thisSound + "\" hidden=\"true\" autostart=\"true\" /></audio>");
 }
 
-let audio = new Audio('tetris_theme.mp3');
+let audio = new Audio('./public/audio/tetris_theme.mp3');
 
 let dropCounter = 0;
 let dropInterval = 1000;
@@ -313,13 +310,12 @@ document.addEventListener('keydown', event => {
 
 $(document).ready(function () {
 
-    $("#myBtn").click(function () {
-        $("#myModal").fadeIn("slow");
-    });
     $(".close").click(function () {
-
+        $("#about").fadeIn('slow')
+        $("about").fadeIn('slow')
         $("#myModal").fadeOut("slow");
     });
+
     $("#start").click(function () {
         playerReset();
         updateScore();
@@ -329,17 +325,15 @@ $(document).ready(function () {
         $("#score-border").addClass('score-border')
     });
 
-    // not working:
-
-    // $('#whole-screen').keypress(function (event) {
-    //   let key = event.which;
-    //   if(key === 13) {
-    //     playerReset();
-    //     updateScore();
-    //     update();
-    //     $("#myModal").fadeOut("slow");
-    //     $("canvas").addClass('canvas')
-    //   }
-    // });
+    $(document).keypress(function(e){
+      if(e.which == 13) {
+        playerReset();
+        updateScore();
+        update();
+        $("#myModal").fadeOut("slow");
+        $("canvas").addClass('canvas')
+        $("#score-border").addClass('score-border')
+      }
+    });
 
 });

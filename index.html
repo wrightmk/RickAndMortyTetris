@@ -1,9 +1,23 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head runat='server'>
     <meta charset="utf-8">
-    <title>Tetris!!!</title>
+    <title>Tetris</title>
     <style>
+      #about {
+        display: none;
+        color: #5cb85c;
+        background-color: white;
+        margin-left: 600px;
+        margin-right: 600px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        opacity: 0.95;
+
+        -webkit-box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+        -moz-box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+        box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+      }
       body {
         background: #202028;
         color: #fff;
@@ -17,8 +31,9 @@
 
       }
       body {
-        background-image: url("rick_and_morty.jpg");
+        background-image: url("./public/images/rick_and_morty.jpg");
         background-repeat: no-repeat;
+        overflow: hidden;
         background-size: cover;
         height: 100vh;
       }
@@ -51,8 +66,10 @@
           -webkit-animation-duration: 0.4s;
           animation-name: animatetop;
           animation-duration: 0.4s;
-          /*box-shadow: 10px 10px 5px black;*/
 
+          -webkit-box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+          -moz-box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+          box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
       }
 
       /* Add Animation */
@@ -92,9 +109,15 @@
         width: 20vw;
         height: 100px;
         background-color: white;
-        box-shadow: 10px 10px 5px black;
+        /*box-shadow: 10px 10px 5px black;*/
         border: black 1px solid;
         z-index: 5;
+
+        -webkit-box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+        -moz-box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+        box-shadow: 10px 10px 30px -4px rgba(0,0,0,0.9);
+        margin-top: 40px;
+        margin-left: 15px;
       }
 
       .modal-header {
@@ -117,8 +140,17 @@
         height: 100px;
       }
 
-    </style>
+      button  {
+        height: 50px;
+        width: 150px;
+        background-color: #5cb85c;
+        cursor: pointer;
+      }
 
+
+    </style>
+    <link runat="server" rel="shortcut icon" href="./public/images/rickAndMorty.ico" type="image/x-icon"/>
+    <link runat="server" rel="icon" href="./public/images/rickAndMorty.ico" type="image/ico"/>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
       integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
       crossorigin="anonymous"></script>
@@ -131,7 +163,12 @@
       </div>
       <canvas id="tetris" width="240" height="400"></canvas>
       <script src="tetris.js" charset="utf-8"></script>
-
+      <div class="about">
+        <div id="about">
+          <h1> Coded by Mitchell Wright </h1>
+          <h2>http://github.com/wrightmk</h2>
+        </div>
+      </div>
       <div id="myModal" class="modal">
 
         <div class="modal-content">
