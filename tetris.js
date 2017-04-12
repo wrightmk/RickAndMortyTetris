@@ -1,4 +1,4 @@
-document.body.style.zoom="80%"
+document.body.style.zoom="90%"
 
 const canvas = document.getElementById('tetris');
 const context = canvas.getContext('2d');
